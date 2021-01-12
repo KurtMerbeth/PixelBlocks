@@ -14,7 +14,7 @@ class App extends Component {
     return (
       <div className="App">
         <center>
-          <Box width={900}>
+          <Box width={930}>
             <Header />
             <BrowserRouter>
               <Switch>
