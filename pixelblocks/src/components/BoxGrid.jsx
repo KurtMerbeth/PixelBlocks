@@ -1,6 +1,5 @@
 import { Component, React } from "react";
 import { Grid, Box } from "@material-ui/core";
-import { BoxGridStyle, BoxGridButtonSytle } from "../const/const.jsx"
 import Button from '@material-ui/core/Button';
 
 class BoxGrid extends Component {
@@ -21,23 +20,23 @@ class BoxGrid extends Component {
     return ((id % 2 === 0) ? '#dedede' : '#e8e8e8');
   }
 
-  clickBox = (id) => {
+  clickBox = async (id) => {
     let smolBox = [...this.state.smolBox]; // copy smolBox state
     let clickedBox = {...smolBox[id]};     // get clicked box
     clickedBox.bgcolor = (clickedBox.bgcolor === "#bed1c4" ? this.returnColor(id) : "#bed1c4");        // change color
     smolBox[id] = clickedBox;              // put clickedBox back
-    this.setState({smolBox})               // set new state
-    console.log(clickedBox)
+    await this.setState({smolBox})               // set new state
+    this.props.setSelectedBlocks(this.state.smolBox.filter(box => box.bgcolor === "#bed1c4"));
   }
 
   render() {
     return (
       <div>
         <Grid container spacing={0}>
-          {this.state.smolBox.map(box => (
-            <Grid item>
-              <Box m="auto" style={BoxGridStyle} bgcolor={box.bgcolor}>
-                <Button style={BoxGridButtonSytle} onClick={() => { this.clickBox(box.id) }}>
+          {this.state.smolBox.map((box, id) => (
+            <Grid key={id}>
+              <Box m="auto" className="boxgrid" bgcolor={box.bgcolor}>
+                <Button key={id} className="button" onClick={() => { this.clickBox(box.id) }}>
                   {box.id}
                 </Button>
               </Box>

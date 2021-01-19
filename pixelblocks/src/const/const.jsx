@@ -18,3 +18,23 @@ export const BoxGridButtonSytle = {
    fontSize: '10px',
    color: '#969696'
 };
+export const BoxStyle = {
+  border: "0px",
+  backgroundColor: "#ededed",
+  width: '500px', 
+  height: '400px'
+}
+export const ModalStyle = {
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  margin: "auto",
+  marginTop: "-10%"
+}
+
+export const DivStyle = {
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  margin: "25px 25px 25px 25px"
+}

@@ -1,0 +1,54 @@
+#root {
+  height: 100%;
+}
+
+.app{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  position: relative;
+  background-color: #ffffff;
+
+    .boxgrid {
+      width: 30px; 
+      height: 30px; 
+      font-size: 10px;
+      justify-content: center;
+      align-items: center;
+      display: flex;
+      html.verticalCentering & {
+        height:100%;
+      }
+      .button {
+        max-width: 30px;
+        max-height: 30px;
+        min-width: 30px;
+        max-height: 30px;
+        font-size: 10px;
+        color: #969696;
+      }
+    }
+    /* doest not work
+    .claim {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: auto;
+      margin-top: -10%;
+      background-color: #c92323;
+      .claimbox{
+        border: 0px;
+        background-color: #c92323;
+        width: 500px;
+        height: 400px;
+        .claimdiv{
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin: 25px 25px 25px 25px;
+          background-color: #c92323;
+        }
+      }
+    }*/
+
+}
