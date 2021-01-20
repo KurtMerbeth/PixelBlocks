@@ -1,8 +1,6 @@
 const INFURA_PROVIDER = 'http://rinkeby.infura.io/v3/5aea93a9924a4366aeea328d987a8f5b';
 const PXL_ADDRESS = '0x883BD346dFc4c1fF19C3C7fa0cF93391d97094Ac';
-function pxlAbi(){
-  
-  return [
+const PXL_ABI = [
     {
       "inputs": [
         {
@@ -588,9 +586,8 @@ function pxlAbi(){
       "type": "function"
     }
   ];
-}
 
 
-module.exports.INFURA_PROVIDER = INFURA_PROVIDER;
-module.exports.PXL_ADDRESS = PXL_ADDRESS;
-module.exports.pxlAbi = pxlAbi;
+module.exports.provider = INFURA_PROVIDER;
+module.exports.address = PXL_ADDRESS;
+module.exports.abi = PXL_ABI;

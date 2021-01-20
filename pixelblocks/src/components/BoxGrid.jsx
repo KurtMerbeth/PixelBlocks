@@ -5,24 +5,20 @@ import { apiCall } from "../const/const";
 
 class BoxGrid extends Component {
   state = {
-    smolBox: [],
-    blockAmount: 0
+    smolBox: []
   }
 
   componentDidMount = async () => {
+    this.renderBoxes();
+  }
+
+  renderBoxes = () => {
     var smolBox = [];
-    for (var i = 0; i < 3100; i++) {
+    for (var i = 0; i < 1023; i++) {
       var bgcolor = this.returnColor(i);
       smolBox.push({ "id": i, "bgcolor": bgcolor });
     }
     this.setState({ smolBox: smolBox });
-  }
-
-  initBlockAmount = async () => {
-    var blockAmount = await apiCall("/api/getBlockAmount"); 
-    console.log("bA:")
-    console.log(blockAmount)
-    this.setState({blockAmount: await blockAmount})
   }
 
   returnColor = (id) => {
@@ -34,7 +30,7 @@ class BoxGrid extends Component {
     let clickedBox = {...smolBox[id]};     // get clicked box
     clickedBox.bgcolor = (clickedBox.bgcolor === "#bed1c4" ? this.returnColor(id) : "#bed1c4");        // change color
     smolBox[id] = clickedBox;              // put clickedBox back
-    await this.setState({smolBox})               // set new state
+    this.setState({smolBox})               // set new state
     this.props.setSelectedBlocks(this.state.smolBox.filter(box => box.bgcolor === "#bed1c4"));
   }
 

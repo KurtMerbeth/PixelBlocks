@@ -1,10 +1,11 @@
 export const backendserver = "http://localhost:3001";
 
 export async function apiCall(api) {
+  return 3100;
   await fetch('http://localhost:3001'+api)
     .then(response => response.json())
     .then(async data => {
-      return 3100; 
+      return data; 
     })
 }
 
