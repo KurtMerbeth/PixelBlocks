@@ -1,19 +1,28 @@
 import { Component, React } from "react";
 import { Grid, Box } from "@material-ui/core";
 import Button from '@material-ui/core/Button';
+import { apiCall } from "../const/const";
 
 class BoxGrid extends Component {
   state = {
-    smolBox: []
+    smolBox: [],
+    blockAmount: 0
   }
 
-  componentDidMount = () => {
+  componentDidMount = async () => {
     var smolBox = [];
-    for (var i = 0; i < 102; i++) {
+    for (var i = 0; i < 3100; i++) {
       var bgcolor = this.returnColor(i);
       smolBox.push({ "id": i, "bgcolor": bgcolor });
     }
     this.setState({ smolBox: smolBox });
+  }
+
+  initBlockAmount = async () => {
+    var blockAmount = await apiCall("/api/getBlockAmount"); 
+    console.log("bA:")
+    console.log(blockAmount)
+    this.setState({blockAmount: await blockAmount})
   }
 
   returnColor = (id) => {

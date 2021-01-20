@@ -1,7 +1,17 @@
+export const backendserver = "http://localhost:3001";
+
+export async function apiCall(api) {
+  await fetch('http://localhost:3001'+api)
+    .then(response => response.json())
+    .then(async data => {
+      return 3100; 
+    })
+}
+
 export const BoxGridStyle = {
-  maxWidth: '30px', 
-  maxHeight: '30px', 
-  minWidth: '30px', 
+  maxWidth: '30px',
+  maxHeight: '30px',
+  minWidth: '30px',
   minHeight: '30px',
   fontSize: '10px',
   justifyContent: 'center',
@@ -11,17 +21,17 @@ export const BoxGridStyle = {
 };
 
 export const BoxGridButtonSytle = {
-   maxWidth: '30px', 
-   maxHeight: '30px', 
-   minWidth: '30px', 
-   minHeight: '30px',
-   fontSize: '10px',
-   color: '#969696'
+  maxWidth: '30px',
+  maxHeight: '30px',
+  minWidth: '30px',
+  minHeight: '30px',
+  fontSize: '10px',
+  color: '#969696'
 };
 export const BoxStyle = {
   border: "0px",
   backgroundColor: "#ededed",
-  width: '500px', 
+  width: '500px',
   height: '400px'
 }
 export const ModalStyle = {

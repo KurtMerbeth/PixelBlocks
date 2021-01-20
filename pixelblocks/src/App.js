@@ -5,7 +5,7 @@ import BoxGrid from "./components/BoxGrid";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Claim from "./modals/Claim";
-import Login from "./modals/Login"
+import Login from "./modals/Login";
 import './style.scss'
 
 
