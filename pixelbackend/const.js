@@ -1,4 +1,4 @@
-const INFURA_PROVIDER = 'http://rinkeby.infura.io/v3/5aea93a9924a4366aeea328d987a8f5b';
+const INFURA_PROVIDER = 'https://rinkeby.infura.io/v3/5aea93a9924a4366aeea328d987a8f5b';
 const PXL_ADDRESS = '0x883BD346dFc4c1fF19C3C7fa0cF93391d97094Ac';
 const PXL_ABI = [
     {

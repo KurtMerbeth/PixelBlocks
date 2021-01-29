@@ -12,7 +12,7 @@ class Claim extends Component {
 
   componentDidMount = async () => {
     if(this.props.selectedBlocks.length > 0) {
-    this.setState({"body": await this.props.selectedBlocks.map((block, id) => (
+    this.setState({body: await this.props.selectedBlocks.map((block, id) => (
         <tr key="id"><td key="id">{block.id}</td></tr>
     ))})
     }

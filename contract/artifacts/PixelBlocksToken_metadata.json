@@ -283,6 +283,38 @@
 						"type": "uint256"
 					}
 				],
+				"name": "metaState",
+				"outputs": [
+					{
+						"internalType": "uint16",
+						"name": "",
+						"type": "uint16"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "metaStateCounter",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
 				"name": "minted",
 				"outputs": [
 					{
@@ -774,10 +806,10 @@
 			]
 		},
 		"localhost/PixelBlocks/contract/PixelBlocksToken.sol": {
-			"keccak256": "0xef7106638aaf695526479bef81c28777f238a9c296c4fb7683ce01d7f568811c",
+			"keccak256": "0x494e793803faf03b8047b18f0b8724dc1223234375555aad9aa20823da2c24f4",
 			"urls": [
-				"bzz-raw://9422684fca8d6bfc224acc89d9d202f9fa52777cc1419b2fcacbc7e4e9b8bfd1",
-				"dweb:/ipfs/QmRyaQfp9wdhb7DfGx53JstYKP7L1FFjSi32Yv6v6cDnbU"
+				"bzz-raw://d44bc5958e522c905b62055b2071077d3039b387fd931d5209f6f52f1da242b1",
+				"dweb:/ipfs/QmSWCJdMp5Y4wdjSs6AvYXu3Yk1pbgwGUEBuTGNCcNLLUh"
 			]
 		}
 	},
