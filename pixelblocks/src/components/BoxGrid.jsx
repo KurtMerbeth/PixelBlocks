@@ -10,13 +10,11 @@ class BoxGrid extends Component {
 
   componentDidMount = async () => {
     this.renderBoxes();
-    await apiCall("/api/getBlockAmount").then(data =>  console.log(data));
-    console.log(await apiCall("/api/getBlockAmount"))
   }
 
   renderBoxes = async () => {
     var smolBox = [];
-    for (var i = 0; i < 1023; i++) {
+    for (var i = 0; i < this.props.blockAmount; i++) {
       var bgcolor = this.returnColor(i);
       smolBox.push({ "id": i, "bgcolor": bgcolor });
     }

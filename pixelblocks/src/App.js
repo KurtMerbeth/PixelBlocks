@@ -6,6 +6,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Claim from "./modals/Claim";
 import Login from "./modals/Login";
+import Dev from "./components/Dev";
 import './style.scss'
 
 
@@ -15,12 +16,15 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      "isDev": false,
       "selectedBlocks": [],
+      "showMain": false,
       "openClaim": false,
       "openLogin": false,
       "isLoggedIn": false,
       "web3": 'undefined',
-      "account": 'undefined'
+      "account": 'undefined',
+      "blockData": 'undefined'
     };
   }
 
@@ -37,12 +41,29 @@ class App extends Component {
 
   setWeb3 = (_web3, _account) => { this.setState({"web3": _web3, "account": _account, "isLoggedIn": true}) }
 
+  fetchData = async () => {
+    var data = await fetch('http://localhost:3001/api/data')
+    .then(res => {
+      return res.json();
+    })
+    .then(data => {
+      return this.setState({blockData: data, showMain: true})
+    })
+  }
+
+
+  componentDidMount = () => {
+    this.fetchData();
+  }
+
+
   render() {
     return (
       <div className="app">
         <center>
           <Box width={930}>
             <Header claim={this.claim} login={this.login}/>
+            {this.state.isDev && <Dev />}
             <Claim open={this.state.openClaim} close={this.closeClaim} selectedBlocks={this.state.selectedBlocks}/>
             <Login open={this.state.openLogin} close={this.closeLogin} />
             
@@ -50,7 +71,7 @@ class App extends Component {
               <Switch>
 
                 <Route exact path="/">
-                  <BoxGrid setSelectedBlocks={this.setSelectedBlocks}/>
+                  {this.state.showMain && <BoxGrid blockAmount={this.state.blockData.blockAmount} mintedBlocks={this.state.blockData.mintedBlocks} setSelectedBlocks={this.setSelectedBlocks}/>}
                 </Route>
 
                 <Route path="/menu">

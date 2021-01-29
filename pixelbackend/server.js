@@ -13,9 +13,71 @@ const port = 3001;
 const web3 = new Web3(new Web3.providers.HttpProvider(PXL.provider));
 const pxl = new web3.eth.Contract(PXL.abi, PXL.address);
 
+var dataCache = {
+    "blockAmount": 0,
+    "price": 0,
+    "oldMetaState": 0,
+    "newMetaState": 0,
+    "mintedAmount": 0,
+    "mintedBlocks": {}
+};
+
+// checks if cache must update and returns dataCache
+handleCache = async () => {
+  var lastMetaState = await pxl.methods.metaStateCounter().call();
+  if(dataCache.oldMetaState < lastMetaState) {
+    dataCache.newMetaState = lastMetaState;
+    await updateCache();
+  }
+  return dataCache;
+}
+
+// updates cache data
+updateCache = async () => {
+  for(var i = dataCache["oldMetaState"]+1; i <= dataCache.newMetaState; i++) {
+    var blockID = await pxl.methods.metaState(i).call();
+    if(dataCache["mintedBlocks"].hasOwnProperty(blockID)) {
+      dataCache.mintedBlocks[blockID] = await getBlockMetadata(blockID);
+    }
+    dataCache.mintedBlocks[blockID] = await getBlockMetadata(blockID);
+    console.log("update block: "+blockID);
+  }
+  dataCache.oldMetaState = dataCache.newMetaState;
+  await initGeneralData();
+}
+
+getLastMetaState = async () => {
+  return pxl.methods.metaStateCounter().call();
+}
+
+getBlockMetadata = (blockID) => {
+  return pxl.methods.tokenURI(blockID).call();
+}
+
+initGeneralData = async () => {
+  dataCache.blockAmount = await pxl.methods.blockAmount().call();
+  dataCache.price = await pxl.methods.price().call();
+  dataCache.oldMetaState = dataCache.newMetaState;
+  dataCache.mintedAmount = await pxl.methods.counter().call();
+}
+
+
+
+
+app.get('/api/data', async (req, res) => {
+  data = await handleCache();
+  console.log(data)
+  res.send(data);
+})
+
+
 app.get('/', (req, res) => {
   res.send('Nice to meet you <3')
 })
+
+getBlockAmount = async() => {
+  return await pxl.methods.blockAmount().call();
+}
 
 app.get('/api/getBlockAmount', async (req, res) => {
   res.send(await pxl.methods.blockAmount().call());
