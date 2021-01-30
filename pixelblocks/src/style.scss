@@ -1,54 +1,81 @@
+$backgroundcolor: #fff;
+
+$blkBoxClrEven: #dedede;
+$blkBoxClrOdd: #e8e8e8;
+$blkBoxClrClicked: #bed1c4;
+
+@mixin blk-box($color) {
+  width: 30px; 
+  height: 30px; 
+  font-size: 10px;
+  background-color: $color;
+}
+
+
 #root {
   height: 100%;
 }
 
 .app{
-  width: 100%;
   height: 100%;
   display: flex;
   position: relative;
-  background-color: #ffffff;
+  background-color: $backgroundcolor;
+  justify-content: center;
 
-    .boxgrid {
-      width: 30px; 
-      height: 30px; 
-      font-size: 10px;
-      justify-content: center;
-      align-items: center;
-      display: flex;
-      html.verticalCentering & {
-        height:100%;
-      }
-      .button {
-        max-width: 30px;
-        max-height: 30px;
-        min-width: 30px;
-        max-height: 30px;
-        font-size: 10px;
-        color: #969696;
-      }
-    }
-    /* doest not work
-    .claim {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: auto;
-      margin-top: -10%;
-      background-color: #c92323;
-      .claimbox{
-        border: 0px;
-        background-color: #c92323;
-        width: 500px;
-        height: 400px;
-        .claimdiv{
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          margin: 25px 25px 25px 25px;
-          background-color: #c92323;
+  .mainBox {
+      width: 930px;
+      margin: 0px 0px 0px 0px;
+      padding: 0;
+      
+      .container {
+        .box-even {
+          @include blk-box($blkBoxClrEven)
+        }
+        .box-odd {
+          @include blk-box($blkBoxClrOdd)
+        }
+        .box-clicked {
+          @include blk-box($blkBoxClrClicked)
+        }
+        .box-sold {
+          @include blk-box("#fff")
+        }
+
+        .button {
+            border-radius: 0 !important;
+            border: 0;
+            max-width: 30px; 
+            max-height: 30px;
+            min-width: 30px;
+            max-height: 30px;
+            font-size: 10px;
+            color: #969696;
+            //background-color: lightblue;
+          }
         }
       }
-    }*/
+    
+      
+
+    // .boxgrid {
+    //   width: 30px; 
+    //   height: 30px; 
+    //   font-size: 10px;
+    //   justify-content: center;
+    //   align-items: center;
+    //   display: flex;
+    //   html.verticalCentering & {
+    //     height:100%;
+    //   }
+    //   .button {
+    //     max-width: 30px;
+    //     max-height: 30px;
+    //     min-width: 30px;
+    //     max-height: 30px;
+    //     font-size: 10px;
+    //     color: #969696;
+    //   }
+    // }
 
 }

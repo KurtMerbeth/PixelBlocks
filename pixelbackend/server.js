@@ -75,6 +75,14 @@ app.get('/', (req, res) => {
   res.send('Nice to meet you <3')
 })
 
+
+
+
+
+
+
+
+// not used:
 getBlockAmount = async() => {
   return await pxl.methods.blockAmount().call();
 }

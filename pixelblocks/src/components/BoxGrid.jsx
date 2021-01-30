@@ -1,7 +1,7 @@
 import { Component, React } from "react";
 import { Grid, Box } from "@material-ui/core";
 import Button from '@material-ui/core/Button';
-import { apiCall } from "../const/const";
+import sold from '../media/sold.png'
 
 class BoxGrid extends Component {
   state = {
@@ -14,36 +14,45 @@ class BoxGrid extends Component {
 
   renderBoxes = async () => {
     var smolBox = [];
-    for (var i = 0; i < this.props.blockAmount; i++) {
-      var bgcolor = this.returnColor(i);
-      smolBox.push({ "id": i, "bgcolor": bgcolor });
+    for (var i = 0; i < this.props.blockData.blockAmount; i++) {
+      if(this.props.blockData.mintedBlocks.hasOwnProperty(i)){    // is block sold?
+        console.log("hasProp:" +i);                               // get block data
+        smolBox.push({ "id": i, "class": "box-sold", "sold": true}); 
+      } else {
+        smolBox.push({ "id": i, "class": this.setBoxClass(i), "sold": false});   // add avaible blocks
+      }
     }
     this.setState({ smolBox: smolBox });
+    console.log(smolBox);
   }
 
-  returnColor = (id) => {
-    return ((id % 2 === 0) ? '#dedede' : '#e8e8e8');
+  setBoxClass = (id) => {
+    return ((id % 2 === 0) ? 'box-even' : 'box-odd');
   }
 
   clickBox = async (id) => {
     let smolBox = [...this.state.smolBox]; // copy smolBox state
     let clickedBox = {...smolBox[id]};     // get clicked box
-    clickedBox.bgcolor = (clickedBox.bgcolor === "#bed1c4" ? this.returnColor(id) : "#bed1c4");        // change color
+    clickedBox.class = (clickedBox.class === 'box-clicked' ? this.setBoxClass(id) : 'box-clicked'); 
     smolBox[id] = clickedBox;              // put clickedBox back
     this.setState({smolBox})               // set new state
-    this.props.setSelectedBlocks(this.state.smolBox.filter(box => box.bgcolor === "#bed1c4"));
+    this.props.setSelectedBlocks(this.state.smolBox.filter(box => box.class === "box-clicked"));
   }
 
   render() {
     return (
       <div>
-        <Grid container spacing={0}>
+        <Grid container className="container">
           {this.state.smolBox.map((box, id) => (
             <Grid key={id}>
-              <Box m="auto" className="boxgrid" bgcolor={box.bgcolor}>
-                <Button key={id} className="button" onClick={() => { this.clickBox(box.id) }}>
-                  {box.id}
-                </Button>
+              <Box m="auto" className={box.class}>
+                {!box.sold && 
+                  <Button key={id} className="button active" onClick={() => { this.clickBox(box.id) }}>
+                    {box.id}
+                  </Button>}
+
+                {box.sold &&
+                  <img src={sold} />}
               </Box>
             </Grid>
           ))}

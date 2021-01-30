@@ -60,8 +60,7 @@ class App extends Component {
   render() {
     return (
       <div className="app">
-        <center>
-          <Box width={930}>
+          <Box className="mainBox">
             <Header claim={this.claim} login={this.login}/>
             {this.state.isDev && <Dev />}
             <Claim open={this.state.openClaim} close={this.closeClaim} selectedBlocks={this.state.selectedBlocks}/>
@@ -71,7 +70,7 @@ class App extends Component {
               <Switch>
 
                 <Route exact path="/">
-                  {this.state.showMain && <BoxGrid blockAmount={this.state.blockData.blockAmount} mintedBlocks={this.state.blockData.mintedBlocks} setSelectedBlocks={this.setSelectedBlocks}/>}
+                  {this.state.showMain && <BoxGrid blockData={this.state.blockData} setSelectedBlocks={this.setSelectedBlocks}/>}
                 </Route>
 
                 <Route path="/menu">
@@ -82,7 +81,6 @@ class App extends Component {
             </BrowserRouter>
             <Footer />
           </Box>
-        </center>
       </div>
     );
   }
